@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Taco</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/styles/styles.css}">
+</head>
+<body>
+<div class="container">
+    <div class="header-container">
+        <img th:src="@{/images/taco.png}"/>
+        <h2>help us prepare your order</h2>
+    </div>
+    <div class="body-container">
+        <form class="order-form" method="post" th:action="@{/order}" th:object="${order}">
+            <span class="validation-error" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></span>
+            <br>
+            <input type="text" placeholder="Enter your name" th:field="*{name}" id="name" class="order-form-input"/>
+            <span class="validation-error" th:if="${#fields.hasErrors('name')}" th:errors="*{address}"></span>
+            <br>
+            <input type="text" placeholder="Enter your address" th:field="*{address}" id="address" class="order-form-input"/>
+            <span class="validation-error" th:if="${#fields.hasErrors('ccNumber')}" th:errors="*{ccNumber}"></span>
+            <br>
+            <input type="text" placeholder="Credit Card Number" th:field="*{ccNumber}" id="ccNumber" class="order-form-input"/>
+            <span class="validation-error" th:if="${#fields.hasErrors('ccExpiration')}" th:errors="*{ccExpiration}"></span>
+            <br>
+            <input type="text" placeholder="Credit Card Expiry" th:field="*{ccExpiration}" id="ccExpiration" class="order-form-input"/>
+            <span class="validation-error" th:if="${#fields.hasErrors('ccCVV')}" th:errors="*{ccCVV}"></span>
+            <br>
+            <input type="text" placeholder="Credit Card Cvv" th:field="*{ccCVV}" id="ccCVV" class="order-form-input"/>
+            <br><input type="submit" value="Submit Order" class="submit"/>
+        </form>
+    </div>
+</div>
+</body>
+</html>
